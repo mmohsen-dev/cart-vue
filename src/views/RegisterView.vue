@@ -153,6 +153,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -169,17 +171,10 @@ export default {
 
   methods: {
     saveUser() {
-      console.log(this.user)
-      fetch("http://127.0.0.1:8000/api/auth/register", {
-        method: "POST",
-        body: this.user,
-      })
-        .then(function (res) {
-          return res.json();
-        })
-        .then(function (data) {
-          alert(JSON.stringify(data));
-        });
+      console.log(this.user);
+      axios.post(`http://127.0.0.1:8000/api/auth/register`, this.user).then((res) => {
+        console.log(res)
+      });
     },
   },
 };
